@@ -1,15 +1,17 @@
 require 'driver-environment'
-require '../exceptions/DriverError'
+require 'store'
+require '../util/error'
 
 module PODF
     module Session
         class Session
-            attr_reader :closed
+            attr_reader :closed, :store
 
             def new(host, driver_env)
                 @host = host
                 @driver_env = driver_env
                 @closed = false
+                @store = Store.new
             end
 
             def host

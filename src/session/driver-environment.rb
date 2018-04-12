@@ -1,6 +1,6 @@
 require "selenium-webdriver"
 require 'driver-factory'
-require '../exceptions/DriverError'
+require '../util/error'
 
 module PODF
     module Session
