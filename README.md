@@ -42,6 +42,8 @@ In your `teardown` method, simply put in the following line for cleanup:
 @session.close
 ```
 
+An example test can be found in test/test/smoke/smoke_test.rb
+
 For specific documentation on the use of these classes, refer to the READMEs in lib/po_driver_fmwk/*/README.md
 
 ## Development
