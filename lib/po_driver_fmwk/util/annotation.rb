@@ -16,3 +16,9 @@ module PODF
     end
   end
 end
+
+class Module
+  def annotate!
+    extend Annotation
+  end
+end
