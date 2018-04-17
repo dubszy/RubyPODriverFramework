@@ -29,13 +29,14 @@ To create a test which uses this framework, add the following line to the top of
 require "po_driver_fmwk"
 ```
 
+In this example, `:chrome` should be replaced with the browser to test against, and `https://www.example.com` should be
+replaced with the root URL to test against.
 To make use of the framework, add the following lines to the `setup` method of your test suite:
 ```ruby
 @driver_env = PODF::Session::DriverEnvironment.new(:chrome, nil)
-@session = PODF::Session::Session.new "https://www.google.com", @driver_env
+@session = PODF::Session::Session.new "https://www.example.com", @driver_env
 ```
-This will create a new DriverEnvironment and Session to work with. The URL provided in the call to `Session.new` is the
-root URL your test will test against.
+This will create a new DriverEnvironment and Session to work with.
 
 In your `teardown` method, simply put in the following line for cleanup:
 ```ruby
