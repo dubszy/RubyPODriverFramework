@@ -8,11 +8,16 @@ module PODF
     private
 
     def method_added(method)
-      # Return here unless the method begins and ends with an underscore
-      return super unless /\A_\z_/ =~ method
-      # Add the annotation to @__annotations__, creating a new hash if @__annotations__ is nil
-      (@__annotations__ ||= {})[method] = @__annotation__[method.to_sym] = args.size == 1 ? args.first : args
+      (@__annotations__ ||= {})[method] = @__last_annotation__ if @__last_annotation__
+      @__last_annotation__ = nil
       super
+    end
+
+    def method_missing(method, *args)
+      # Return here unless the method name begins and ends with an underscore
+      return super unless /\A_\z_/ =~ method
+      @__last_annotation__ ||= {}
+      @__last_annotation__[method.to_sym] = args.size == 1 ? args.first : args
     end
   end
 end

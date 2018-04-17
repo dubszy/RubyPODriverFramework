@@ -1,4 +1,5 @@
 require_relative '../util/annotation'
+require_relative '../util/abstract_class'
 
 module PODF
   module Loadables
@@ -50,11 +51,21 @@ module PODF
 
     class AbstractLoadable
       extend Loadable
+      abstract!
+      __abstract__
 
       attr_reader :session
 
       def initialize(session)
         @session = session
+      end
+
+      # TODO: consider reworking Selector to provide support for comments
+      #
+      # Since there is no CSS selector for comments,
+      # this is a little funky.
+      def comments
+        session.driver_env.execute_js("$('*').contents().filter(function(){ return this.nodeType===8; })")
       end
 
     end # AbstractLoadable

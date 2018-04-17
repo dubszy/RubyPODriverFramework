@@ -12,7 +12,7 @@ module PODF
         class Selector
             attr_reader :session, :locator, :by_type
 
-            def new(session, locator, by_type)
+            def initialize(session, locator, by_type)
                 begin
                     raise ArgumentError, 'session cannot be nil' if session.nil?
                     raise ArgumentError, 'locator cannot be nil or empty' if locator.nil? || locator.empty?
